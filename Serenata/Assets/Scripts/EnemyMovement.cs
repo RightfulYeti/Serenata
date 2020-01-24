@@ -15,6 +15,9 @@ public class EnemyMovement : MonoBehaviour
     public GameObject Sprite7;
     public GameObject Sprite8;
 
+    public GameObject Tomato;
+    public GameObject Water;
+
     private int RandomEnemySpawn = 0;
     public int ActiveEnemySprite = 0;
 
@@ -24,6 +27,8 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Tomato = GameObject.Find("Tomato");
+        //GameObject.Find("Water").GetComponent<TomatoScript>()
         EnemySprites = new GameObject[9];
         RandomEnemySpawn = Random.Range(0, 9);
         ActiveEnemySprite = RandomEnemySpawn;
@@ -52,9 +57,33 @@ public class EnemyMovement : MonoBehaviour
             if (ActiveEnemySprite == i)
             {
                 EnemySprites[i].SetActive(true);
+                //ThrowObject(Random.Range(0, 2));
+                ThrowObject(1);
             }
             else
                 EnemySprites[i].SetActive(false);
+        }
+    }
+
+    void ThrowObject(int pObjectType)
+    {
+        if (pObjectType == 1)
+        {
+            for (int i = 0; i < Tomato.GetComponent<TomatoScript>().TomatoSprites.Length; i++)
+            {
+                if (i == ActiveEnemySprite)
+                {
+                    Tomato.GetComponent<TomatoScript>().TomatoSprites[i].SetActive(true);
+                }
+                else
+                {
+                    Tomato.GetComponent<TomatoScript>().TomatoSprites[i].SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            //GameObject.Find("Water");
         }
     }
 }
