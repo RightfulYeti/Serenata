@@ -30,6 +30,7 @@ public class WomanMovement : MonoBehaviour
         for (int i = 0; i < WomanSprites.Length; i++)
         {
             WomanSprites[i] = GameObject.Find("Woman Sprite " + i);
+            WomanSprites[i].SetActive(false);
         }
         for (int i = 0; i < WomanSprites.Length; i++)
         {
