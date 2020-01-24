@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Sprite1;
     public GameObject Sprite2;
     private int RandomPlayerSpawn = 0;
+    public GameObject GameMasterRef;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
             Sprite0.SetActive(false);
         }
 
+        GameMasterRef = GameObject.Find("GameMaster");
+        GameMasterRef.GetComponent<GameMasterScript>().PlayerLocation = RandomPlayerSpawn;
         ActivePlayerSprite = RandomPlayerSpawn;
     }
 
@@ -44,10 +47,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) && ActivePlayerSprite != 0)
         {
             --ActivePlayerSprite;
+            GameMasterRef.GetComponent<GameMasterScript>().PlayerLocation = ActivePlayerSprite;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) && ActivePlayerSprite != 2)
         {
             ++ActivePlayerSprite;
+            GameMasterRef.GetComponent<GameMasterScript>().PlayerLocation = ActivePlayerSprite;
         }
 
         if (ActivePlayerSprite == 0)

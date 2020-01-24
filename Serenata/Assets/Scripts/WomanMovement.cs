@@ -34,7 +34,7 @@ public class WomanMovement : MonoBehaviour
             WomanSprites[i] = GameObject.Find("Woman Sprite " + i);
             WomanSprites[i].SetActive(false);
         }
-        InvokeRepeating("Spriter", 2.0f, 2.0f);
+        InvokeRepeating("Spriter", 0.0f, 2.0f);
         GameMasterRef = GameObject.Find("GameMaster");
     }
 

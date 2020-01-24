@@ -22,9 +22,7 @@ public class EnemyMovement : MonoBehaviour
 
     private int RandomEnemySpawn = 0;
     public int ActiveEnemySprite = 0;
-
-    public float ActionTime = 2.0f;
-    public float Period = 0.1f;
+    public bool ThrowingObject = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +36,7 @@ public class EnemyMovement : MonoBehaviour
             EnemySprites[i] = GameObject.Find("Enemy Sprite " + i);
             EnemySprites[i].SetActive(false);
         }
-        InvokeRepeating("Spriter", 0.0f, 2.0f);
+        InvokeRepeating("Spriter", 1.0f, 2.0f);
         GameMasterRef = GameObject.Find("GameMaster");
     }
 
@@ -62,6 +60,10 @@ public class EnemyMovement : MonoBehaviour
                 {
                     EnemySprites[i].SetActive(true);
                     GameMasterRef.GetComponent<GameMasterScript>().SetWindowOccupied(i);
+                    if (!ThrowingObject)
+                    {
+                        ThrowObject(1);
+                    }
                 }
                 else
                 {
@@ -71,27 +73,28 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    //void ThrowObject(int pObjectType)
-    //{
-    //    if (pObjectType == 1)
-    //    {
-    //        Tomato.GetComponent<TomatoScript>().Active = true;
-    //        Tomato.GetComponent<TomatoScript>().ActiveTomatoSprite = ActiveEnemySprite;
-    //        for (int i = 0; i < Tomato.GetComponent<TomatoScript>().TomatoSprites.Length; i++)
-    //        {
-    //            if (i == ActiveEnemySprite)
-    //            {
-    //                Tomato.GetComponent<TomatoScript>().TomatoSprites[i].SetActive(true);
-    //            }
-    //            else
-    //            {
-    //                Tomato.GetComponent<TomatoScript>().TomatoSprites[i].SetActive(false);
-    //            }
-    //        }
-    //    }
-    //    else
-    //    {
-    //        //GameObject.Find("Water");
-    //    }
-    //}
+    void ThrowObject(int pObjectType)
+    {
+        if (pObjectType == 1)
+        {
+            ThrowingObject = true;
+            Tomato.GetComponent<TomatoScript>().Active = true;
+            Tomato.GetComponent<TomatoScript>().CurrentlyActiveTomato = ActiveEnemySprite;
+            for (int i = 0; i < Tomato.GetComponent<TomatoScript>().TomatoSprites.Length; i++)
+            {
+                if (i == ActiveEnemySprite)
+                {
+                    Tomato.GetComponent<TomatoScript>().TomatoSprites[i].SetActive(true);
+                }
+                else
+                {
+                    Tomato.GetComponent<TomatoScript>().TomatoSprites[i].SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            //GameObject.Find("Water");
+        }
+    }
 }

@@ -14,58 +14,50 @@ public class TomatoScript : MonoBehaviour
     public GameObject Sprite6;
     public GameObject Sprite7;
     public GameObject Sprite8;
+    public GameObject Sprite9;
+    public GameObject Sprite10;
+    public GameObject Sprite11;
 
-    public int ActiveTomatoSprite = 0;
+    public GameObject GameMasterRef;
+
+    public int CurrentlyActiveTomato = 0;
     public bool Active = false;
-    private float ActionTime = 5.0f;
-    public float PeriodTime = 2.0f;
+    private float ElapsedTime = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        TomatoSprites = new GameObject[9];
+        TomatoSprites = new GameObject[12];
         for (int i = 0; i < TomatoSprites.Length; i++)
         {
             TomatoSprites[i] = GameObject.Find("Tomato Sprite " + i);
             TomatoSprites[i].SetActive(false);
         }
-
-        InvokeRepeating("Spriter", 1.0f, 1.0f);
+        GameMasterRef = GameObject.Find("GameMaster");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Active)
+        ElapsedTime += Time.deltaTime;
+        if (Active && ElapsedTime >= 1.0f && CurrentlyActiveTomato <= 8)
         {
+            ElapsedTime = ElapsedTime % 1f;
+            TomatoSprites[CurrentlyActiveTomato].SetActive(false);
+            TomatoSprites[CurrentlyActiveTomato + 3].SetActive(true);
+            CurrentlyActiveTomato += 3;
+            GameMasterRef.GetComponent<GameMasterScript>().ObjectLocation = CurrentlyActiveTomato;
+        }
+        else if (CurrentlyActiveTomato > 8)
+        {
+            ElapsedTime = ElapsedTime % 1f;
             for (int i = 0; i < TomatoSprites.Length; i++)
             {
-                if (i == ActiveTomatoSprite)
-                {
-                    TomatoSprites[i].SetActive(true);
-                }
-                else
-                    TomatoSprites[i].SetActive(false);
-            }
-            if (Time.time > ActionTime)
-            {
-                ActionTime += PeriodTime;
-                TomatoSprites[ActiveTomatoSprite].SetActive(false);
-                TomatoSprites[ActiveTomatoSprite+3].SetActive(true);
-            }
-        }
-    }
-
-    void Spriter()
-    {
-        for (int i = 0; i < TomatoSprites.Length; i++)
-        {
-            if (i == ActiveTomatoSprite)
-            {
-                TomatoSprites[i].SetActive(true);
-            }
-            else
                 TomatoSprites[i].SetActive(false);
+            }
+            CurrentlyActiveTomato = 0;
+            Active = false;
+            GameObject.Find("Enemy").GetComponent<EnemyMovement>().ThrowingObject = false;
         }
     }
 }
