@@ -44,12 +44,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) && ActivePlayerSprite != 0)
         {
             --ActivePlayerSprite;
-            print(ActivePlayerSprite + "sprite is ACTIVE");
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) && ActivePlayerSprite != 2)
         {
             ++ActivePlayerSprite;
-            print(ActivePlayerSprite + "sprite is ACTIVE");
         }
 
         if (ActivePlayerSprite == 0)
