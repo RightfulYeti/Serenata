@@ -25,18 +25,18 @@ public class WomanMovement : MonoBehaviour
     void Start()
     {
         WomanSprites = new GameObject[9];
-        RandomWomanSpawn = Random.Range(0, 9);
-        ActiveWomanSprite = RandomWomanSpawn;
+        //RandomWomanSpawn = Random.Range(0, 9);
+        //ActiveWomanSprite = RandomWomanSpawn;
         for (int i = 0; i < WomanSprites.Length; i++)
         {
             WomanSprites[i] = GameObject.Find("Woman Sprite " + i);
             WomanSprites[i].SetActive(false);
         }
-        for (int i = 0; i < WomanSprites.Length; i++)
-        {
-            print(WomanSprites[i].name);
-        }
-        InvokeRepeating("Spriter", 2.0f, 2.0f);
+        //for (int i = 0; i < WomanSprites.Length; i++)
+        //{
+        //    print(WomanSprites[i].name);
+        //}
+        //InvokeRepeating("Spriter", 2.0f, 2.0f);
     }
 
     // Update is called once per frame
@@ -44,18 +44,18 @@ public class WomanMovement : MonoBehaviour
     {
     }
 
-    void Spriter()
-    {
-        ActiveWomanSprite = Random.Range(0, 9);
+    //void Spriter()
+    //{
+    //    ActiveWomanSprite = Random.Range(0, 9);
 
-        for (int i = 0; i < WomanSprites.Length; i++)
-        {
-            if (ActiveWomanSprite == i)
-            {
-                WomanSprites[i].SetActive(true);
-            }
-            else
-                WomanSprites[i].SetActive(false);
-        }
-    }
+    //    for (int i = 0; i < WomanSprites.Length; i++)
+    //    {
+    //        if (ActiveWomanSprite == i)
+    //        {
+    //            WomanSprites[i].SetActive(true);
+    //        }
+    //        else
+    //            WomanSprites[i].SetActive(false);
+    //    }
+    //}
 }
