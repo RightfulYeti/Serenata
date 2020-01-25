@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Data : MonoBehaviour
 {
-    public float PlayerEndScore = 0.0f;
+    public int PlayerEndScore = 0;
 
     // Start is called before the first frame update
     void Start()

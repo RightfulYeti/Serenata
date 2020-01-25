@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameMasterScript : MonoBehaviour
 {
-    private float iScoreCounter = 0;
+    private int iScoreCounter = 0;
     private bool[] Windows;
     public int ObjectLocation;
     public int PlayerLocation;
+    public int WomanLocation;
     public int PlayerLives;
+    Text ScoreTextBox;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +66,14 @@ public class GameMasterScript : MonoBehaviour
             SceneManager.LoadScene("End");
             //UnityEditor.EditorApplication.isPlaying = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && (WomanLocation == PlayerLocation || WomanLocation == PlayerLocation + 3 || WomanLocation == PlayerLocation + 6))
+        {
+            iScoreCounter += 1;
+            FindObjectOfType<Canvas>().GetComponentInChildren<Text>().text = iScoreCounter.ToString();
+        }
+
+
     }
     void printer()
     {

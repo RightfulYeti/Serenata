@@ -1,7 +1,43 @@
 fileFormatVersion: 2
 guid: 1c8362b4793a41b4893e469f175ab7e6
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1226219902232013685
+    second: START_NEW_GAME_Text_0
+  - first:
+      213: 5936444129301492627
+    second: START_NEW_GAME_Text_1
+  - first:
+      213: -4068374748337149675
+    second: START_NEW_GAME_Text_2
+  - first:
+      213: 8747765619016982620
+    second: START_NEW_GAME_Text_3
+  - first:
+      213: 2149676896321399727
+    second: START_NEW_GAME_Text_4
+  - first:
+      213: -8274705799806903922
+    second: START_NEW_GAME_Text_5
+  - first:
+      213: -3448670797959597614
+    second: START_NEW_GAME_Text_6
+  - first:
+      213: 8855070458043042274
+    second: START_NEW_GAME_Text_7
+  - first:
+      213: -7712301714944140087
+    second: START_NEW_GAME_Text_8
+  - first:
+      213: -6088169798245512022
+    second: START_NEW_GAME_Text_9
+  - first:
+      213: -8072271689386777952
+    second: START_NEW_GAME_Text_10
+  - first:
+      213: -8326638119127837465
+    second: START_NEW_GAME_Text_11
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -32,7 +68,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -65,7 +101,7 @@ TextureImporter:
     maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -77,7 +113,7 @@ TextureImporter:
     maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -86,7 +122,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_0
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8452f6ee779bfee0800000000000000
+      internalID: -1226219902232013685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 15
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 393f7f3ab7c726250800000000000000
+      internalID: 5936444129301492627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_2
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 519e138b8ba3a87c0800000000000000
+      internalID: -4068374748337149675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c50e1eb9b7e466970800000000000000
+      internalID: 8747765619016982620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_4
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fabe91b6fbf25dd10800000000000000
+      internalID: 2149676896321399727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8915a59ae65a2d80800000000000000
+      internalID: -8274705799806903922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_6
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 15
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d1fa5c5e2cd320d0800000000000000
+      internalID: -3448670797959597614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_7
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e906b85aa783ea70800000000000000
+      internalID: 8855070458043042274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_8
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 15
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cc5e18a37668f490800000000000000
+      internalID: -7712301714944140087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_9
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac805333d9728ba0800000000000000
+      internalID: -6088169798245512022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_10
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a2a8afcaa789ff80800000000000000
+      internalID: -8072271689386777952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: START_NEW_GAME_Text_11
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 15
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e498204fb6d17c80800000000000000
+      internalID: -8326638119127837465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

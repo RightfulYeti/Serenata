@@ -49,6 +49,7 @@ public class WomanMovement : MonoBehaviour
         if (GameMasterRef.GetComponent<GameMasterScript>().GetWindowOccupied(ActiveWomanSprite))
         {
             WomanSprites[ActiveWomanSprite].SetActive(false);
+            GameMasterRef.GetComponent<GameMasterScript>().WomanLocation = 0;
         }
         else
         {
@@ -58,6 +59,7 @@ public class WomanMovement : MonoBehaviour
                 {
                     WomanSprites[i].SetActive(true);
                     GameMasterRef.GetComponent<GameMasterScript>().SetWindowOccupied(i);
+                    GameMasterRef.GetComponent<GameMasterScript>().WomanLocation = ActiveWomanSprite;
                 }
                 else
                 {
