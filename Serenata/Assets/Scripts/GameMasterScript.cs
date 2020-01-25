@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameMasterScript : MonoBehaviour
 {
-    private int iScoreCounter = 0;
+    private float iScoreCounter = 0;
     private bool[] Windows;
     public int ObjectLocation;
     public int PlayerLocation;
-    public int PlayerLives = 3;
+    public int PlayerLives;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,6 @@ public class GameMasterScript : MonoBehaviour
         if (PlayerLocation + 9 == ObjectLocation)
         {
             PlayerLives--;
-            print(PlayerLives);
             PlayerLocation = 0;
             ObjectLocation = 0;
         }
@@ -59,8 +59,9 @@ public class GameMasterScript : MonoBehaviour
 
         if (PlayerLives <= 0)
         {
-            print("You're soaked!");
-            UnityEditor.EditorApplication.isPlaying = false;
+            FindObjectOfType<Data>().PlayerEndScore = iScoreCounter;
+            SceneManager.LoadScene("End");
+            //UnityEditor.EditorApplication.isPlaying = false;
         }
     }
     void printer()
