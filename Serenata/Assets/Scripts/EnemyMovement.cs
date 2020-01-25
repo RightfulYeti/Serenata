@@ -47,7 +47,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Spriter()
     {
-        ActiveEnemySprite = Random.Range(0, 9);
+        ActiveEnemySprite = Random.Range(0, 3);
         if (GameMasterRef.GetComponent<GameMasterScript>().GetWindowOccupied(ActiveEnemySprite))
         {
             EnemySprites[ActiveEnemySprite].SetActive(false);

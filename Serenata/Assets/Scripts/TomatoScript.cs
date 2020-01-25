@@ -40,7 +40,7 @@ public class TomatoScript : MonoBehaviour
     void Update()
     {
         ElapsedTime += Time.deltaTime;
-        if (Active && ElapsedTime >= 1.0f && CurrentlyActiveTomato <= 8)
+        if (Active && ElapsedTime >= 2.0f && CurrentlyActiveTomato <= 8)
         {
             ElapsedTime = ElapsedTime % 1f;
             TomatoSprites[CurrentlyActiveTomato].SetActive(false);
@@ -58,6 +58,7 @@ public class TomatoScript : MonoBehaviour
             CurrentlyActiveTomato = 0;
             Active = false;
             GameObject.Find("Enemy").GetComponent<EnemyMovement>().ThrowingObject = false;
+            GameMasterRef.GetComponent<GameMasterScript>().ObjectLocation = 0;
         }
     }
 }
