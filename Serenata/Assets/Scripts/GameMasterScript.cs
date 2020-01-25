@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine;
 
 public class GameMasterScript : MonoBehaviour
 {
     private int iScoreCounter = 0;
     private bool[] Windows;
     public int ObjectLocation;
+    public int Object2Location;
     public int PlayerLocation;
     public int WomanLocation;
     public int PlayerLives;
@@ -22,7 +23,19 @@ public class GameMasterScript : MonoBehaviour
         {
             Windows[i] = false;
         }
-        InvokeRepeating("printer", 1.0f, 1.0f);
+    }
+
+    private IEnumerator Blink(float waitTime)
+    {
+        float endTime = Time.time + waitTime;
+        while (Time.time < endTime)
+        {
+            GameObject Player = GameObject.Find("Player");
+            Player.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+            Player.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 
     // Update is called once per frame
@@ -33,6 +46,7 @@ public class GameMasterScript : MonoBehaviour
             PlayerLives--;
             PlayerLocation = 0;
             ObjectLocation = 0;
+            StartCoroutine("Blink", 1.0f);
         }
 
         if (PlayerLives == 3)
@@ -64,7 +78,6 @@ public class GameMasterScript : MonoBehaviour
         {
             FindObjectOfType<Data>().PlayerEndScore = iScoreCounter;
             SceneManager.LoadScene("End");
-            //UnityEditor.EditorApplication.isPlaying = false;
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && (WomanLocation == PlayerLocation || WomanLocation == PlayerLocation + 3 || WomanLocation == PlayerLocation + 6))
@@ -72,12 +85,9 @@ public class GameMasterScript : MonoBehaviour
             iScoreCounter += 1;
             FindObjectOfType<Canvas>().GetComponentInChildren<Text>().text = iScoreCounter.ToString();
         }
+    }
 
 
-    }
-    void printer()
-    {
-    }
     public void SetWindowOccupied(int pOccupied)
     {
         for (int i = 0; i < Windows.Length; i++)
@@ -87,6 +97,17 @@ public class GameMasterScript : MonoBehaviour
                 Windows[i] = true;
             }
             else
+            {
+                Windows[i] = false;
+            }
+        }
+    }
+
+    public void SetWindowNotOccupied(int pOccupied)
+    {
+        for (int i = 0; i < Windows.Length; i++)
+        {
+            if (i == pOccupied)
             {
                 Windows[i] = false;
             }

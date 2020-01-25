@@ -16,9 +16,9 @@ public class EnemyMovement : MonoBehaviour
     public GameObject Sprite8;
 
     public GameObject Tomato;
-    public GameObject Water;
 
     public GameObject GameMasterRef;
+    public GameObject Enemy2Ref;
 
     private int RandomEnemySpawn = 0;
     public int ActiveEnemySprite = 0;
@@ -37,17 +37,30 @@ public class EnemyMovement : MonoBehaviour
             EnemySprites[i].SetActive(false);
         }
         InvokeRepeating("Spriter", 1.0f, 2.0f);
+        Enemy2Ref = GameObject.Find("Enemy 2");
         GameMasterRef = GameObject.Find("GameMaster");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!ThrowingObject)
+        {
+            GameObject.Find("Tomato").GetComponent<TomatoScript>().CurrentlyActiveTomato = ActiveEnemySprite;
+        }
+
+        for (int i = 0; i < EnemySprites.Length; i++)
+        {
+            if (EnemySprites[i].name != "Enemy Sprite " + ActiveEnemySprite.ToString())
+            {
+                EnemySprites[i].SetActive(false);
+            }
+        }
     }
 
     void Spriter()
     {
-        ActiveEnemySprite = Random.Range(0, 3);
+        ActiveEnemySprite = Random.Range(0, 9);
         if (GameMasterRef.GetComponent<GameMasterScript>().GetWindowOccupied(ActiveEnemySprite))
         {
             EnemySprites[ActiveEnemySprite].SetActive(false);
@@ -64,10 +77,11 @@ public class EnemyMovement : MonoBehaviour
                     {
                         ThrowObject(1);
                     }
-                }
-                else
-                {
-                    EnemySprites[i].SetActive(false);
+                    else
+                    {
+                        EnemySprites[i].SetActive(false);
+                        GameMasterRef.GetComponent<GameMasterScript>().SetWindowNotOccupied(i);
+                    }
                 }
             }
         }
@@ -91,10 +105,6 @@ public class EnemyMovement : MonoBehaviour
                     Tomato.GetComponent<TomatoScript>().TomatoSprites[i].SetActive(false);
                 }
             }
-        }
-        else
-        {
-            //GameObject.Find("Water");
         }
     }
 }

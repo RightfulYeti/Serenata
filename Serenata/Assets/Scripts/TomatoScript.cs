@@ -21,8 +21,10 @@ public class TomatoScript : MonoBehaviour
     public GameObject GameMasterRef;
 
     public int CurrentlyActiveTomato = 0;
+    public float PomidoryTimer = 2.0f;
     public bool Active = false;
     private float ElapsedTime = 0f;
+    private float ElapsedTime2 = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,21 @@ public class TomatoScript : MonoBehaviour
     void Update()
     {
         ElapsedTime += Time.deltaTime;
-        if (Active && ElapsedTime >= 2.0f && CurrentlyActiveTomato <= 8)
+        ElapsedTime2 += Time.deltaTime;
+
+        if (!Active)
+        {
+            ElapsedTime = 0;
+            CurrentlyActiveTomato = GameObject.Find("Enemy").GetComponent<EnemyMovement>().ActiveEnemySprite;
+        }
+
+        if(ElapsedTime2 >= 5.0f)
+        {
+            ElapsedTime2 = ElapsedTime2 % 1f;
+            PomidoryTimer -= 0.1f;
+        }
+
+        if (Active && ElapsedTime >= PomidoryTimer && CurrentlyActiveTomato <= 8)
         {
             ElapsedTime = ElapsedTime % 1f;
             TomatoSprites[CurrentlyActiveTomato].SetActive(false);
@@ -50,12 +66,12 @@ public class TomatoScript : MonoBehaviour
         }
         else if (CurrentlyActiveTomato > 8)
         {
-            ElapsedTime = ElapsedTime % 1f;
             for (int i = 0; i < TomatoSprites.Length; i++)
             {
                 TomatoSprites[i].SetActive(false);
             }
             CurrentlyActiveTomato = 0;
+            ElapsedTime = 0f;
             Active = false;
             GameObject.Find("Enemy").GetComponent<EnemyMovement>().ThrowingObject = false;
             GameMasterRef.GetComponent<GameMasterScript>().ObjectLocation = 0;
