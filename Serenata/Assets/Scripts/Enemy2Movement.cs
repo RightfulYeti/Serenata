@@ -16,8 +16,9 @@ public class Enemy2Movement : MonoBehaviour
     public GameObject Sprite8;
 
     public GameObject FryingPan;
-
+    private PanScript FryingPanScript;
     public GameObject GameMasterRef;
+    private GameMasterScript GameMasterScriptRef;
     public GameObject EnemyRef;
 
     private int RandomEnemy2Spawn = 0;
@@ -27,7 +28,6 @@ public class Enemy2Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FryingPan = GameObject.Find("FryingPan");
         Enemy2Sprites = new GameObject[9];
         RandomEnemy2Spawn = Random.Range(0, 9);
         ActiveEnemy2Sprite = RandomEnemy2Spawn;
@@ -39,6 +39,9 @@ public class Enemy2Movement : MonoBehaviour
         InvokeRepeating("Spriter", 1.0f, 2.0f);
         EnemyRef = GameObject.Find("Enemy");
         GameMasterRef = GameObject.Find("GameMaster");
+        GameMasterScriptRef = GameMasterRef.GetComponent<GameMasterScript>();
+        FryingPan = GameObject.Find("FryingPan");
+        FryingPanScript = FryingPan.GetComponent<PanScript>();
     }
 
     // Update is called once per frame
@@ -46,7 +49,7 @@ public class Enemy2Movement : MonoBehaviour
     {
         if (!ThrowingObject)
         {
-            GameObject.Find("FryingPan").GetComponent<PanScript>().CurrentlyActivePan = ActiveEnemy2Sprite;
+            FryingPanScript.CurrentlyActivePan = ActiveEnemy2Sprite;
         }
 
         for (int i = 0; i < Enemy2Sprites.Length; i++)
@@ -61,8 +64,9 @@ public class Enemy2Movement : MonoBehaviour
     void Spriter()
     {
         ActiveEnemy2Sprite = Random.Range(0, 9);
-        if (GameMasterRef.GetComponent<GameMasterScript>().GetWindowOccupied(ActiveEnemy2Sprite))
+        if (GameMasterScriptRef.GetWindowOccupied(ActiveEnemy2Sprite) || EnemyRef.GetComponent<EnemyMovement>().ActiveEnemySprite == ActiveEnemy2Sprite)
         {
+            ActiveEnemy2Sprite = 1;
             Enemy2Sprites[ActiveEnemy2Sprite].SetActive(false);
         }
         else
@@ -72,16 +76,12 @@ public class Enemy2Movement : MonoBehaviour
                 if (ActiveEnemy2Sprite == i)
                 {
                     Enemy2Sprites[i].SetActive(true);
-                    GameMasterRef.GetComponent<GameMasterScript>().SetWindowOccupied(i);
+                    print(ActiveEnemy2Sprite);
+                    GameMasterScriptRef.SetWindowOccupied(i);
                     if (!ThrowingObject)
                     {
                         ThrowObject(1);
                     }
-                }
-                else
-                {
-                    Enemy2Sprites[i].SetActive(false);
-                    GameMasterRef.GetComponent<GameMasterScript>().SetWindowNotOccupied(i);
                 }
             }
         }
@@ -92,17 +92,17 @@ public class Enemy2Movement : MonoBehaviour
         if (pObjectType == 1)
         {
             ThrowingObject = true;
-            FryingPan.GetComponent<PanScript>().Active = true;
-            FryingPan.GetComponent<PanScript>().CurrentlyActivePan = ActiveEnemy2Sprite;
-            for (int i = 0; i < FryingPan.GetComponent<PanScript>().PanSprites.Length; i++)
+            FryingPanScript.Active = true;
+            FryingPanScript.CurrentlyActivePan = ActiveEnemy2Sprite;
+            for (int i = 0; i < FryingPanScript.PanSprites.Length; i++)
             {
                 if (i == ActiveEnemy2Sprite)
                 {
-                    FryingPan.GetComponent<PanScript>().PanSprites[i].SetActive(true);
+                    FryingPanScript.PanSprites[i].SetActive(true);
                 }
                 else
                 {
-                    FryingPan.GetComponent<PanScript>().PanSprites[i].SetActive(false);
+                    FryingPanScript.PanSprites[i].SetActive(false);
                 }
             }
         }
