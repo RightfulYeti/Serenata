@@ -75,6 +75,7 @@ public class TomatoScript : MonoBehaviour
             Active = false;
             GameObject.Find("Enemy").GetComponent<EnemyMovement>().ThrowingObject = false;
             GameMasterRef.GetComponent<GameMasterScript>().ObjectLocation = 0;
+            GameMasterRef.GetComponent<GameMasterScript>().ObjectType = "Tomato";
         }
     }
 }

@@ -8,12 +8,17 @@ public class GameMasterScript : MonoBehaviour
 {
     private int iScoreCounter = 0;
     private bool[] Windows;
+    public AudioClip[] LalalaSounds;
+    public AudioClip[] PanSounds;
+    public AudioClip[] TomatoSounds;
     public int ObjectLocation;
+    public string ObjectType = "";
     public int Object2Location;
     public int PlayerLocation;
     public int WomanLocation;
     public int PlayerLives;
     Text ScoreTextBox;
+    public bool UpNotPressed = true;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +51,17 @@ public class GameMasterScript : MonoBehaviour
             PlayerLives--;
             PlayerLocation = 0;
             ObjectLocation = 0;
+            int Selection = Random.Range(0, 4);
+            if (ObjectType == "Pan")
+            {
+                GameObject.Find("Tomato Audio Source").GetComponent<AudioSource>().clip = PanSounds[Selection];
+                GameObject.Find("Tomato Audio Source").GetComponent<AudioSource>().Play();
+            }
+            else if (ObjectType == "Tomato")
+            {
+                GameObject.Find("Water Audio Source").GetComponent<AudioSource>().clip = TomatoSounds[Selection];
+                GameObject.Find("Water Audio Source").GetComponent<AudioSource>().Play();
+            }
             StartCoroutine("Blink", 1.0f);
         }
 
@@ -80,10 +96,19 @@ public class GameMasterScript : MonoBehaviour
             SceneManager.LoadScene("End");
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && (WomanLocation == PlayerLocation || WomanLocation == PlayerLocation + 3 || WomanLocation == PlayerLocation + 6))
+        if (Input.GetKey("up") && (WomanLocation == PlayerLocation || WomanLocation == PlayerLocation + 3 || WomanLocation == PlayerLocation + 6) && UpNotPressed)
         {
+            UpNotPressed = false;
             iScoreCounter += 1;
             FindObjectOfType<Canvas>().GetComponentInChildren<Text>().text = iScoreCounter.ToString();
+            int LalalaChoice = Random.Range(0, 6);
+            GameObject.Find("Singing Audio Source").GetComponent<AudioSource>().clip = LalalaSounds[LalalaChoice];
+            GameObject.Find("Singing Audio Source").GetComponent<AudioSource>().Play();
+        }
+
+        if (!GameObject.Find("Singing Audio Source").GetComponent<AudioSource>().isPlaying)
+        {
+            UpNotPressed = true;
         }
     }
 

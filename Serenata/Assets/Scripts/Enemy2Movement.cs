@@ -76,7 +76,6 @@ public class Enemy2Movement : MonoBehaviour
                 if (ActiveEnemy2Sprite == i)
                 {
                     Enemy2Sprites[i].SetActive(true);
-                    print(ActiveEnemy2Sprite);
                     GameMasterScriptRef.SetWindowOccupied(i);
                     if (!ThrowingObject)
                     {

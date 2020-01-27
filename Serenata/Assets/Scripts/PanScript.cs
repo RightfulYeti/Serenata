@@ -74,6 +74,7 @@ public class PanScript : MonoBehaviour
             Active = false;
             GameObject.Find("Enemy 2").GetComponent<Enemy2Movement>().ThrowingObject = false;
             GameMasterRef.GetComponent<GameMasterScript>().ObjectLocation = 0;
+            GameMasterRef.GetComponent<GameMasterScript>().ObjectType = "Pan";
         }
     }
 }
