@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\EnemyObject.cs" />
     <Compile Include="Assets\Scripts\GameMasterScript.cs" />
     <Compile Include="Assets\Scripts\MenuScript.cs" />
+    <Compile Include="Assets\Scripts\MusicScript.cs" />
     <Compile Include="Assets\Scripts\PanScript.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\TomatoScript.cs" />
