@@ -43,6 +43,7 @@ public class PanScript : MonoBehaviour
     {
         ElapsedTime += Time.deltaTime;
         ElapsedTime2 += Time.deltaTime;
+
         if (!Active)
         {
             ElapsedTime = 0;
@@ -73,8 +74,8 @@ public class PanScript : MonoBehaviour
             ElapsedTime = 0f;
             Active = false;
             GameObject.Find("Enemy 2").GetComponent<Enemy2Movement>().ThrowingObject = false;
-            GameMasterRef.GetComponent<GameMasterScript>().ObjectLocation = 0;
-            GameMasterRef.GetComponent<GameMasterScript>().ObjectType = "Pan";
+            GameMasterRef.GetComponent<GameMasterScript>().ObjectLocation = CurrentlyActivePan;
+            GameMasterRef.GetComponent<GameMasterScript>().ObjectType = 1;
         }
     }
 }

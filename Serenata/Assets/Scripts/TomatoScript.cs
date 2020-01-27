@@ -19,6 +19,7 @@ public class TomatoScript : MonoBehaviour
     public GameObject Sprite11;
 
     public GameObject GameMasterRef;
+ 
 
     public int CurrentlyActiveTomato = 0;
     public float PomidoryTimer = 2.0f;
@@ -36,7 +37,7 @@ public class TomatoScript : MonoBehaviour
             TomatoSprites[i].SetActive(false);
         }
         GameMasterRef = GameObject.Find("GameMaster");
-    }
+}
 
     // Update is called once per frame
     void Update()
@@ -74,8 +75,8 @@ public class TomatoScript : MonoBehaviour
             ElapsedTime = 0f;
             Active = false;
             GameObject.Find("Enemy").GetComponent<EnemyMovement>().ThrowingObject = false;
-            GameMasterRef.GetComponent<GameMasterScript>().ObjectLocation = 0;
-            GameMasterRef.GetComponent<GameMasterScript>().ObjectType = "Tomato";
+            GameMasterRef.GetComponent<GameMasterScript>().ObjectLocation = CurrentlyActiveTomato;
+            GameMasterRef.GetComponent<GameMasterScript>().ObjectType = 2;
         }
     }
 }

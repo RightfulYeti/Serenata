@@ -33,7 +33,7 @@ public class EndScript : MonoBehaviour
         // You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
         // a sceneBuildIndex of 1 as shown in Build Settings.
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Menu");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Gameplay");
 
         // Wait until the asynchronous scene fully loads
         while (!asyncLoad.isDone)

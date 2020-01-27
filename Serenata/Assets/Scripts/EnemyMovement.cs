@@ -37,7 +37,7 @@ public class EnemyMovement : MonoBehaviour
             EnemySprites[i] = GameObject.Find("Enemy Sprite " + i);
             EnemySprites[i].SetActive(false);
         }
-        InvokeRepeating("Spriter", 1.0f, 2.0f);
+        InvokeRepeating("Spriter", 2.0f, 2.0f);
         Enemy2Ref = GameObject.Find("Enemy 2");
         GameMasterRef = GameObject.Find("GameMaster");
         GameMasterScriptRef = GameMasterRef.GetComponent<GameMasterScript>();

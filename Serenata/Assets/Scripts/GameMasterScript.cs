@@ -12,14 +12,16 @@ public class GameMasterScript : MonoBehaviour
     public AudioClip[] PanSounds;
     public AudioClip[] TomatoSounds;
     public int ObjectLocation;
-    public string ObjectType = "";
+    public int ObjectType = 0;
     public int Object2Location;
     public int PlayerLocation;
     public int WomanLocation;
     public int PlayerLives;
     Text ScoreTextBox;
     public bool UpNotPressed = true;
-
+    GameObject Player;
+    GameObject Tomato;
+    GameObject Pan;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,9 @@ public class GameMasterScript : MonoBehaviour
         {
             Windows[i] = false;
         }
+        Player = GameObject.Find("Player");
+        Tomato = GameObject.Find("Tomato");
+        Pan = GameObject.Find("FryingPan");
     }
 
     private IEnumerator Blink(float waitTime)
@@ -35,7 +40,6 @@ public class GameMasterScript : MonoBehaviour
         float endTime = Time.time + waitTime;
         while (Time.time < endTime)
         {
-            GameObject Player = GameObject.Find("Player");
             Player.SetActive(false);
             yield return new WaitForSeconds(0.2f);
             Player.SetActive(true);
@@ -46,22 +50,31 @@ public class GameMasterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Tomato.GetComponent<TomatoScript>().CurrentlyActiveTomato - PlayerLocation < Pan.GetComponent<PanScript>().CurrentlyActivePan - PlayerLocation)
+        {
+            ObjectType = 1;
+        }
+        else
+            ObjectType = 2;
+
         if (PlayerLocation + 9 == ObjectLocation)
         {
+            int Selection = Random.Range(0, 4);
+            if (ObjectType == 1)
+            {
+                GameObject.Find("Objects Audio Source").GetComponent<AudioSource>().clip = PanSounds[Selection];
+                GameObject.Find("Objects Audio Source").GetComponent<AudioSource>().Play();
+            }
+            else
+            {
+                GameObject.Find("Objects Audio Source").GetComponent<AudioSource>().clip = TomatoSounds[Selection];
+                GameObject.Find("Objects Audio Source").GetComponent<AudioSource>().Play();
+            }
+
+            ObjectType = 0;
             PlayerLives--;
             PlayerLocation = 0;
             ObjectLocation = 0;
-            int Selection = Random.Range(0, 4);
-            if (ObjectType == "Pan")
-            {
-                GameObject.Find("Tomato Audio Source").GetComponent<AudioSource>().clip = PanSounds[Selection];
-                GameObject.Find("Tomato Audio Source").GetComponent<AudioSource>().Play();
-            }
-            else if (ObjectType == "Tomato")
-            {
-                GameObject.Find("Water Audio Source").GetComponent<AudioSource>().clip = TomatoSounds[Selection];
-                GameObject.Find("Water Audio Source").GetComponent<AudioSource>().Play();
-            }
             StartCoroutine("Blink", 1.0f);
         }
 
@@ -90,10 +103,10 @@ public class GameMasterScript : MonoBehaviour
             GameObject.Find("Lives").transform.GetChild(2).gameObject.SetActive(false);
         }
 
-        if (PlayerLives <= 0)
+        if (PlayerLives <= 0 && !GameObject.Find("Objects Audio Source").GetComponent<AudioSource>().isPlaying)
         {
-            FindObjectOfType<Data>().PlayerEndScore = iScoreCounter;
-            SceneManager.LoadScene("End");
+           GameObject.Find("DataMaster").GetComponent<Data>().PlayerEndScore = iScoreCounter;
+           SceneManager.LoadScene("End");
         }
 
         if (Input.GetKey("up") && (WomanLocation == PlayerLocation || WomanLocation == PlayerLocation + 3 || WomanLocation == PlayerLocation + 6) && UpNotPressed)
