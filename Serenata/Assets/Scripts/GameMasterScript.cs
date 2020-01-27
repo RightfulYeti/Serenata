@@ -8,6 +8,8 @@ public class GameMasterScript : MonoBehaviour
 {
     private int iScoreCounter = 0;
     private bool[] Windows;
+    public GameObject[] Notes;
+    public GameObject[] Hearts;
     public AudioClip[] LalalaSounds;
     public AudioClip[] PanSounds;
     public AudioClip[] TomatoSounds;
@@ -22,6 +24,7 @@ public class GameMasterScript : MonoBehaviour
     GameObject Player;
     GameObject Tomato;
     GameObject Pan;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,14 @@ public class GameMasterScript : MonoBehaviour
         for (int i = 0; i < Windows.Length; i++)
         {
             Windows[i] = false;
+        }
+        for (int i = 0; i < Notes.Length; i++)
+        {
+            Notes[i].SetActive(false);
+        }
+        for (int i = 0; i < Hearts.Length; i++)
+        {
+            Hearts[i].SetActive(false);
         }
         Player = GameObject.Find("Player");
         Tomato = GameObject.Find("Tomato");
@@ -111,6 +122,20 @@ public class GameMasterScript : MonoBehaviour
 
         if (Input.GetKey("up") && (WomanLocation == PlayerLocation || WomanLocation == PlayerLocation + 3 || WomanLocation == PlayerLocation + 6) && UpNotPressed)
         {
+            for (int i = 0; i < Notes.Length; i++)
+            {
+                if (i == PlayerLocation)
+                {
+                    Notes[i].SetActive(true);
+                }
+            }
+            for (int i = 0; i < Hearts.Length; i++)
+            {
+                if (i == WomanLocation)
+                {
+                    Hearts[i].SetActive(true);
+                }
+            }
             UpNotPressed = false;
             iScoreCounter += 1;
             FindObjectOfType<Canvas>().GetComponentInChildren<Text>().text = iScoreCounter.ToString();
@@ -122,6 +147,14 @@ public class GameMasterScript : MonoBehaviour
         if (!GameObject.Find("Singing Audio Source").GetComponent<AudioSource>().isPlaying)
         {
             UpNotPressed = true;
+            for (int i = 0; i < Hearts.Length; i++)
+            {
+                Hearts[i].SetActive(false);
+            }
+            for (int i = 0; i < Notes.Length; i++)
+            {
+                Notes[i].SetActive(false);
+            }
         }
     }
 
