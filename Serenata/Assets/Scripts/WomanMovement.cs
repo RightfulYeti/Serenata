@@ -16,7 +16,8 @@ public class WomanMovement : MonoBehaviour
     public GameObject Sprite8;
 
     public GameObject GameMasterRef;
-
+    public GameObject EnemyRef;
+    public GameObject Enemy2Ref;
     private int RandomWomanSpawn = 0;
     public int ActiveWomanSprite = 0;
     private int ActiveCounter = 0;
@@ -33,13 +34,20 @@ public class WomanMovement : MonoBehaviour
             WomanSprites[i] = GameObject.Find("Woman Sprite " + i);
             WomanSprites[i].SetActive(false);
         }
-        InvokeRepeating("Spriter", 1.0f, 2.0f);
+        InvokeRepeating("Spriter", 2.0f, 2.0f);
         GameMasterRef = GameObject.Find("GameMaster");
+        EnemyRef = GameObject.Find("Enemy");
+        Enemy2Ref = GameObject.Find("Enemy 2");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.activeSelf == false)
+        {
+            ActiveWomanSprite = -1;
+        }
+
         for (int i = 0; i < WomanSprites.Length; i++)
         {
             if (!WomanSprites[i].activeSelf)
@@ -57,7 +65,7 @@ public class WomanMovement : MonoBehaviour
     void Spriter()
     {
         ActiveWomanSprite = Random.Range(0, 9);
-        if (GameMasterRef.GetComponent<GameMasterScript>().GetWindowOccupied(ActiveWomanSprite))
+        if (GameMasterRef.GetComponent<GameMasterScript>().GetWindowOccupied(ActiveWomanSprite) || Enemy2Ref.GetComponent<Enemy2Movement>().ActiveEnemy2Sprite == ActiveWomanSprite || EnemyRef.GetComponent<EnemyMovement>().ActiveEnemySprite == ActiveWomanSprite)
         {
             WomanSprites[ActiveWomanSprite].SetActive(false);
             GameMasterRef.GetComponent<GameMasterScript>().WomanLocation = 0;

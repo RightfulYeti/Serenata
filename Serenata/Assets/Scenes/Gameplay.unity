@@ -326,6 +326,7 @@ MonoBehaviour:
   FryingPan: {fileID: 0}
   GameMasterRef: {fileID: 0}
   EnemyRef: {fileID: 0}
+  WomanRef: {fileID: 0}
   ActiveEnemy2Sprite: 0
   ThrowingObject: 0
 --- !u!1 &38342108
@@ -1272,6 +1273,8 @@ MonoBehaviour:
   Sprite7: {fileID: 1261539410}
   Sprite8: {fileID: 1076721298}
   GameMasterRef: {fileID: 0}
+  EnemyRef: {fileID: 0}
+  Enemy2Ref: {fileID: 0}
   ActiveWomanSprite: 0
   ActionTime: 2
 --- !u!4 &312984587 stripped
@@ -5675,6 +5678,7 @@ MonoBehaviour:
   Tomato: {fileID: 0}
   GameMasterRef: {fileID: 0}
   Enemy2Ref: {fileID: 0}
+  WomanRef: {fileID: 0}
   ActiveEnemySprite: 0
   ThrowingObject: 0
 --- !u!1 &1471619825

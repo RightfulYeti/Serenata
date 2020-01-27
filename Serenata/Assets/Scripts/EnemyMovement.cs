@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
     public GameObject GameMasterRef;
     private GameMasterScript GameMasterScriptRef;
     public GameObject Enemy2Ref;
-
+    public GameObject WomanRef;
     private int RandomEnemySpawn = 0;
     public int ActiveEnemySprite = 0;
     public bool ThrowingObject = false;
@@ -39,6 +39,7 @@ public class EnemyMovement : MonoBehaviour
         }
         InvokeRepeating("Spriter", 2.0f, 2.0f);
         Enemy2Ref = GameObject.Find("Enemy 2");
+        WomanRef = GameObject.Find("Woman");
         GameMasterRef = GameObject.Find("GameMaster");
         GameMasterScriptRef = GameMasterRef.GetComponent<GameMasterScript>();
         Tomato = GameObject.Find("Tomato");
@@ -66,7 +67,7 @@ public class EnemyMovement : MonoBehaviour
     void Spriter()
     {
         ActiveEnemySprite = Random.Range(0, 9);
-        if (GameMasterScriptRef.GetWindowOccupied(ActiveEnemySprite) || Enemy2Ref.GetComponent<Enemy2Movement>().ActiveEnemy2Sprite == ActiveEnemySprite)
+        if (GameMasterScriptRef.GetWindowOccupied(ActiveEnemySprite) || Enemy2Ref.GetComponent<Enemy2Movement>().ActiveEnemy2Sprite == ActiveEnemySprite || WomanRef.GetComponent<WomanMovement>().ActiveWomanSprite == ActiveEnemySprite)
         {
             ActiveEnemySprite = 0;
             EnemySprites[ActiveEnemySprite].SetActive(false);
